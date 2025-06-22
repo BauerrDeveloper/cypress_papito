@@ -14,7 +14,7 @@
 //
 //
 // -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
+//3 Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
 //
 // -- This is a dual command --
@@ -23,3 +23,37 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add('goHome', () => {
+  cy.viewport(1920, 1080)
+  cy.visit('https://playground.cyskills.com.br')
+  cy.contains('h2', 'Faça login').should('be.visible')
+  
+})
+
+Cypress.Commands.add('login', (email, password) => {
+  cy.get('input[data-cy="email"]').type(email)
+  cy.get('input[data-cy="password"]').type(password)
+  cy.get('button[data-cy="login-button"]').click()
+})
+
+Cypress.Commands.add('userLoggedIn', () => {
+  cy.get('h2[data-cy="welcome-title"]')
+      .scrollIntoView()
+      .should('be.visible')
+      .and('have.text', 'Boas vindas ao Cypress Playground')
+})
+
+Cypress.Commands.add('validatePage', (element, text) => {
+  cy.get(element)
+    .scrollIntoView()
+    .should('be.visible')
+    .and('have.text', text)
+})
+
+Cypress.Commands.add('noticeHaveText', (text) => {
+  cy.get('div[data-cy="notice"]')
+    .should('be.visible')
+    .and('contain', text)
+})
