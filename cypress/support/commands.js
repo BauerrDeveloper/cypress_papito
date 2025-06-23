@@ -45,15 +45,16 @@ Cypress.Commands.add('userLoggedIn', () => {
       .and('have.text', 'Boas vindas ao Cypress Playground')
 })
 
-Cypress.Commands.add('validatePage', (element, text) => {
-  cy.get(element)
-    .scrollIntoView()
-    .should('be.visible')
-    .and('have.text', text)
-})
-
 Cypress.Commands.add('noticeHaveText', (text) => {
   cy.get('div[data-cy="notice"]')
     .should('be.visible')
     .and('contain', text)
+})
+
+Cypress.Commands.add('goToPage', (route, element, text) => {
+  cy.get(`nav a[href="${route}"]`).click()
+  cy.get(element)
+    .scrollIntoView()
+    .should('be.visible')
+    .and('have.text', text)
 })

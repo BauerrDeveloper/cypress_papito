@@ -6,8 +6,7 @@ describe('Input Fields', () => {
   it('Deve preencher o campo do tipo texto', () => {
     cy.login('papito@cyskills.com.br', 'showtime')
     cy.userLoggedIn()
-    cy.get('nav a[href="input-fields"]').click()
-    cy.validatePage('h2', 'Input Fields')
+    cy.goToPage('input-fields', 'h2', 'Input Fields')
     
     cy.get('input[data-cy="fullname"]')
       .type('James Bond')
