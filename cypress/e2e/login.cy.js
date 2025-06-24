@@ -1,4 +1,4 @@
-describe('Playground', () => {
+describe('Login', () => {
   
   beforeEach(() => {
     cy.goHome()

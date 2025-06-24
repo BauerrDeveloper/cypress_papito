@@ -22,8 +22,6 @@ describe('Input Fields', () => {
 
     cy.get('input[data-cy="date"]')
       .type('2025-06-22')
-      .should('have.value', '2025-06-22')        
-
-      
+      .should('have.value', '2025-06-22')
   })
 })
